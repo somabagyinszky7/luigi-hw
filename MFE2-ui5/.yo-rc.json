@@ -1,0 +1,15 @@
+{
+  "generator-ui5-app": {
+    "application": "mfe2",
+    "namespace": "com.myorg",
+    "framework": "OpenUI5",
+    "frameworkVersion": "1.114.0",
+    "author": "soma",
+    "initrepo": false,
+    "tstypes": "@openui5/ts-types-esm",
+    "tstypesVersion": "1.114.0",
+    "appId": "com.myorg.mfe2",
+    "appURI": "com/myorg/mfe2",
+    "setupCompleted": true
+  }
+}

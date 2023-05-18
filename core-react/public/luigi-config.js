@@ -11,20 +11,14 @@ Luigi.setConfig({
             pathSegment: "products",
             label: "Products",
             icon: "product",
-            viewUrl: "/sampleapp.html#/microfrontend/products",
+            viewUrl: "http://localhost:8080/index.html",
             keepSelectedForChildren: true,
             children: [{
                 pathSegment: ':id',
-                viewUrl: '/sampleapp.html#/microfrontend/productDetail/:id',
+                viewUrl: 'http://localhost:4200/:id',
                 context: { id: ':id' }
             }]
-          },
-          {
-            pathSegment: 'order',
-            label: 'Order History',
-            icon: 'history',
-            viewUrl: 'http://localhost:8080/index.html'
-        }
+          }
         ],
       },
     ],

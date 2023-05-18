@@ -1,40 +1,28 @@
-import React, { Component, useState, useEffect } from 'react';
-import {
-  addInitListener,
-  addContextUpdateListener,
-  removeContextUpdateListener,
-  removeInitListener
-} from '@luigi-project/client';
+import React, { useState, useEffect } from 'react';
+import "fundamental-styles/dist/fundamental-styles.css";
+import { addInitListener, addContextUpdateListener, removeContextUpdateListener, removeInitListener, sendCustomMessage } from "@luigi-project/client";
+import { Grid, Panel, Select, Option } from "@ui5/webcomponents-react";
 
-const Home = () => {
-  const [message, setMessage] = useState('');
-  const [initListener, setInitListener] = useState(null);
-  const [contextUpdateListener, setContextUpdateListener] = useState(null);
+const Home = (props) => {
+  const [options] = useState([{ key: 'en-US', text: 'en-US' }]);
 
-  useEffect(() => {
-    setInitListener(
-      addInitListener(initialContext => {
-        setMessage('Luigi Client initialized.');
-      })
-    );
-
-    setContextUpdateListener(
-      addContextUpdateListener(updatedContext => {
-        setMessage('Luigi Client updated.');
-      })
-    );
-
-    return function cleanup() {
-      removeContextUpdateListener(contextUpdateListener);
-      removeInitListener(initListener);
-    };
-  }, []);
+  function onChangeValue(event) {
+    sendCustomMessage({
+      id: "set-language",
+      locale: event.detail.selectedOption.innerText,
+    });
+  }
 
   return (
-    <div>
-      <h1>Home</h1>
-      <div>{message}</div>
-    </div>
+    <Grid position="Center" defaultIndent="XL1 L1 M1 S1" defaultSpan="XL10 L10 M10 S10">
+      <Panel headerText={props.localeDict.WELCOME_LUIGI} headerLevel="H3">
+        <Select onChange={onChangeValue}>
+          {options.map((language) => (
+            <Option key={language.key}>{language.text}</Option>
+          ))}
+        </Select>
+      </Panel>
+    </Grid>
   );
 };
 

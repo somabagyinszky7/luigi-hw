@@ -2,49 +2,58 @@ Luigi.setConfig({
   navigation: {
     nodes: () => [
       {
-        pathSegment: 'home',
-        label: 'Home',
-        icon: 'home',
-        viewUrl: '/sampleapp.html/#/microfrontend/home',
-        loadingIndicator: {
-          enabled: false
-        },
+        pathSegment: "home",
+        label: "Home",
+        icon: "home",
+        viewUrl: "/sampleapp.html#/microfrontend/home",
         children: [
           {
-            pathSegment: 'sample1',
-            label: 'First',
-            icon: 'nutrition-activity',
-            viewUrl: '/sampleapp.html/#/microfrontend/sample1'
-          },
-          {
-            pathSegment: 'sample2',
-            label: 'Second',
-            icon: 'paper-plane',
-            viewUrl: '/sampleapp.html/#/microfrontend/sample2'
-          },
-          {
-            category: { label: 'Links', icon: 'cloud' },
-            label: 'Luigi Project',
-            externalLink: {
-              url: 'https://luigi-project.io/'
-            }
-          },
-          {
-            category: 'Links',
-            label: 'React.js',
-            externalLink: {
-              url: 'https://reactjs.org/'
-            }
+            pathSegment: "products",
+            label: "Products",
+            icon: "product",
+            viewUrl: "/sampleapp.html#/microfrontend/products",
+            keepSelectedForChildren: true,
+            children: [{
+                pathSegment: ':id',
+                viewUrl: '/sampleapp.html#/microfrontend/productDetail/:id',
+                context: { id: ':id' }
+            }]
           }
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   settings: {
-    header: {
-      title: 'Luigi React App',
-      logo: '/logo.png'
+    header: { title: "Luigi React App"},
+    responsiveNavigation: "simpleMobileOnly",
+    customTranslationImplementation: myTranslationProvider,
+  },
+  lifecycleHooks: {
+    luigiAfterInit: () => {
+      Luigi.i18n().setCurrentLocale(defaultLocale);
     },
-    responsiveNavigation: 'simpleMobileOnly'
-  }
+  },
+  communication: {
+    customMessagesListeners: {
+      "set-language": (msg) => {
+        Luigi.i18n().setCurrentLocale(msg.locale);
+      },
+    },
+  },
 });
+
+
+var defaultLocale = "en-US";
+function myTranslationProvider() {
+var dict = {
+"en-US": { PRODUCTS: "Products", ORDERHISTORY: "Order History" },
+};
+return {
+getTranslation: function (label, interpolation, locale) {
+  const local = locale || Luigi.i18n().getCurrentLocale() || defaultLocale
+  return (
+    dict[local][label] || label
+  );
+},
+};
+}

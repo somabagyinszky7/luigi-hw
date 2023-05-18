@@ -12,7 +12,7 @@ sap.ui.define(["com/myorg/mfe2/controller/BaseController"], function (Controller
       onListItemPress: function (oEvent) {
           const id = oEvent.getSource().getBindingContext().getProperty("id");
 
-          LuigiClient.linkManager().openAsModal('/home/products/' + id, { title: 'Product Detail', size: 'm' });
+          LuigiClient.linkManager().openAsModal('detail/' + id, { title: 'Product Detail', size: 'm' });
       }
   });
 });

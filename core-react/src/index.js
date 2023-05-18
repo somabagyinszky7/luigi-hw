@@ -47,7 +47,6 @@ const App = () => {
       <React.StrictMode>
         <Router basename="microfrontend">
           <Routes>
-            <Route path="/home" element={<Home localeDict={dict[currentLocale]} currentLocale={currentLocale} />} />
             <Route path="/products" element={<Products localeDict={dict[currentLocale]}/>}></Route>
             <Route path="/productDetail/:id" element={<ProductDetail localeDict={dict[currentLocale]} />}></Route>
           </Routes>

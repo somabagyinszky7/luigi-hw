@@ -1,1 +1,31 @@
-<p>product works!</p>
+<style>
+  .mainTitle {
+    font: bold;
+  }
+	.content,
+	.content-group {
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 1rem;
+	}
+</style>
+<ui5-card *ngIf="product" class="medium">
+  <div class="mainTitle content content-padding">
+    <ui5-title level="H3">{{ product.name }}</ui5-title>
+  </div>
+
+	<div class="content content-padding">
+    <div class="content-group">
+			<ui5-label>Description</ui5-label>
+			<ui5-link target="_blank">{{ product.description }}</ui5-link>
+		</div>
+		<div class="content-group">
+			<ui5-label>Price</ui5-label>
+			<ui5-title level="H6">{{ product.price }} {{ product.currencyCode }}</ui5-title>
+		</div>
+		<div class="content-group">
+			<ui5-label>Availability</ui5-label>
+			<ui5-title level="H6">{{ product.stock }}</ui5-title>
+		</div>
+	</div>
+</ui5-card>

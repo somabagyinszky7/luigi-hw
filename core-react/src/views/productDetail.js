@@ -5,7 +5,7 @@ import {
     Grid, ObjectPage, Label, DynamicPageHeader, DynamicPageTitle, ObjectStatus, FlexBox, Button, Toast, ObjectPageSection, FormItem, Form, Text, Bar
 } from "@ui5/webcomponents-react";
 import { linkManager, getContext } from "@luigi-project/client";
-import { ProductCollection } from "../assets/products.js";
+import { ProductCollection } from "../../../MFE1-angular/src/assets/products.ts/index.js";
 
 const ProductDetail = (props) => {
     const [currentProduct, setCurrentProduct] = useState({});

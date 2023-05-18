@@ -1,8 +1,11 @@
 <mvc:View controllerName="com.myorg.mfe2.controller.Main"
-  displayBlock="true"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
-  <List
+  	<ScrollContainer
+		height="100%"
+		width="100%"
+		vertical="true">
+    <List
     items="{/ProductCollection}">
     <ObjectListItem
       title="{name}"
@@ -16,4 +19,6 @@
       numberUnit="{currencyCode}">
     </ObjectListItem>
   </List>
+	</ScrollContainer>
+  
 </mvc:View>

@@ -2,26 +2,20 @@ Luigi.setConfig({
   navigation: {
     nodes: () => [
       {
-        pathSegment: "home",
-        label: "Home",
-        icon: "home",
-        viewUrl: "/sampleapp.html#/microfrontend/home",
-        children: [
-          {
-            pathSegment: "products",
-            label: "Products",
-            icon: "product",
-            viewUrl: "http://localhost:8080/index.html",
-            keepSelectedForChildren: true,
-            children: [{
-                pathSegment: ':id',
-                viewUrl: 'http://localhost:4200/:id',
-                context: { id: ':id' }
-            }]
-          }
-        ],
-      },
-    ],
+        pathSegment: "products",
+        label: "Products",
+        icon: "product",
+        viewUrl: "http://localhost:8080/index.html",
+        keepSelectedForChildren: true,
+        children: [{
+            pathSegment: 'detail/:id',
+            viewUrl: 'http://localhost:4200/product/:id',
+            loadingIndicator: {
+              enabled: false
+            },
+        }]
+      }
+    ]
   },
   settings: {
     header: { title: "Luigi React App"},

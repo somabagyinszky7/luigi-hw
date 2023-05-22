@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './views/home.js';
 import { dict } from './language.js';
 import { addInitListener, addContextUpdateListener, removeContextUpdateListener, removeInitListener, uxManager} from '@luigi-project/client';
 import { ThemeProvider } from "@ui5/webcomponents-react";
-import Products from './views/products.js';
-import ProductDetail from './views/productDetail.js';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -48,7 +45,6 @@ const App = () => {
         <Router basename="microfrontend">
           <Routes>
             <Route path="/products" element={<Products localeDict={dict[currentLocale]}/>}></Route>
-            <Route path="/productDetail/:id" element={<ProductDetail localeDict={dict[currentLocale]} />}></Route>
           </Routes>
         </Router>
       </React.StrictMode>
